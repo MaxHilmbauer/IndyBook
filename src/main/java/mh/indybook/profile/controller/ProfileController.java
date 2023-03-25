@@ -24,7 +24,6 @@ public class ProfileController {
                 while ((line = sc.nextLine()).contains(" - ")) {
                     String teacher = line.split(" - ")[1];
                     //profile.getTeachers().add(teacher);
-                    // Test
                 }
             }
             if (line.contains("Subject:")) {
