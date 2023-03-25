@@ -1,6 +1,6 @@
-package mh.easyindy.indy.model;
+package mh.indybook.indy.model;
 
-import mh.easyindy.indy.service.IndyRequest;
+import mh.indybook.indy.service.IndyRequest;
 import net.dongliu.requests.Methods;
 
 import java.util.Objects;

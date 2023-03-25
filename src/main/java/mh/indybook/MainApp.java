@@ -1,10 +1,7 @@
-package mh.easyindy;
+package mh.indybook;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -16,7 +13,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("IndyBot");
+        stage.setTitle("IndyBook");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

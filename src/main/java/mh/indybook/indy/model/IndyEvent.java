@@ -1,8 +1,10 @@
-package mh.easyindy.indy.model;
+package mh.indybook.indy.model;
 
-import mh.easyindy.indy.Indy;
+import mh.indybook.indy.Indy;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class IndyEvent {
@@ -27,7 +29,6 @@ public class IndyEvent {
         this.indy = indy;
         this.jsonObject = jsonObject;
         this.classes = jsonObject.getString("class");
-
         this.future = jsonObject.optString("pastOrFuturePopUp", "past").equals("future");
         this.date = jsonObject.optString("number", "");
         this.day = jsonObject.optString("day", "");
@@ -48,7 +49,6 @@ public class IndyEvent {
     }
 
     public IndyEventDetailed getDetails() {
-        Indy indy = Indy.getInstance();
         return indy.getIndyEventDetailed(this);
     }
 
@@ -78,6 +78,20 @@ public class IndyEvent {
 
     public boolean isFuture() {
         return future;
+    }
+
+    public boolean isFutureExtended() {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date event = formatter.parse(getDate());
+            Date now = new Date();
+            return now.before(event);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+
     }
 
     public String getDate() {

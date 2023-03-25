@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>mh</groupId>
-    <artifactId>easyindy</artifactId>
+    <artifactId>indybot</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>EasyIndy</name>
+    <name>indyboty</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,7 +86,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>mh.easyindy/mh.easyindy.MainApp</mainClass>
+                            <mainClass>mh.easyindy/mh.indybook.MainApp</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

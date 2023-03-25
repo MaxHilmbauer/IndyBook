@@ -1,4 +1,4 @@
-package mh.easyindy.indy.model;
+package mh.indybook.indy.model;
 
 public class IndySubject {
 

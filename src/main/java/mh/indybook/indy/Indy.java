@@ -1,6 +1,6 @@
-package mh.easyindy.indy;
+package mh.indybook.indy;
 
-import mh.easyindy.indy.model.*;
+import mh.indybook.indy.model.*;
 import net.dongliu.requests.Requests;
 import net.dongliu.requests.Session;
 import org.json.*;
@@ -43,10 +43,11 @@ public final class Indy {
                 .collect(Collectors.toSet());
     }
 
-    public Set<IndyEvent> getNextEventContexts(int limit) {
+    public Set<IndyEvent> getNextIndyEvents(int limit) {
         return getAllEventContexts()
                 .stream()
                 .filter(IndyEvent::isFuture)
+                .filter(IndyEvent::isFutureExtended)
                 .sorted(Comparator.comparing(IndyEvent::getDate))
                 .limit(limit)
                 .collect(Collectors.toCollection(LinkedHashSet::new));

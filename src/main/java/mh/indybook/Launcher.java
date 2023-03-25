@@ -1,4 +1,4 @@
-package mh.easyindy;
+package mh.indybook;
 
 public class Launcher {
 

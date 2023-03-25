@@ -1,13 +1,13 @@
-package mh.easyindy.gui.controller;
+package mh.indybook.gui.controller;
 
-import mh.easyindy.indy.model.IndyCredentials;
-import mh.easyindy.indy.Indy;
+import mh.indybook.indy.model.IndyCredentials;
+import mh.indybook.indy.Indy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import mh.easyindy.gui.service.SceneManager;
+import mh.indybook.gui.service.SceneManager;
 import java.io.IOException;
 
 public class LoginController {
@@ -35,7 +35,7 @@ public class LoginController {
         }
 
         if (indy.loggedIn()) {
-            SceneManager.changeScene(event, "booking.fxml", "IndyBot", indy);
+            SceneManager.changeScene(event, "booking.fxml", "IndyBook", indy);
         } else {
             infoLabel.setText("Wrong credentials!");
         }

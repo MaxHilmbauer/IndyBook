@@ -1,8 +1,8 @@
-package mh.easyindy.gui.service;
+package mh.indybook.gui.service;
 
 
-import mh.easyindy.MainApp;
-import mh.easyindy.indy.Indy;
+import mh.indybook.MainApp;
+import mh.indybook.indy.Indy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

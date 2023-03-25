@@ -1,7 +1,7 @@
-package mh.easyindy.indy.service;
+package mh.indybook.indy.service;
 
-import mh.easyindy.indy.model.IndyResponse;
-import mh.easyindy.indy.model.IndyRoute;
+import mh.indybook.indy.model.IndyResponse;
+import mh.indybook.indy.model.IndyRoute;
 import net.dongliu.requests.RawResponse;
 import net.dongliu.requests.Session;
 import org.json.JSONObject;

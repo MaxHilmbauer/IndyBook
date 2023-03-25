@@ -1,4 +1,4 @@
-package mh.easyindy.gui.controller;
+package mh.indybook.gui.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

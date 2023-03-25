@@ -1,18 +1,29 @@
-package mh.easyindy.gui.controller;
+package mh.indybook.gui.controller;
 
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import mh.easyindy.indy.model.IndyEvent;
-import mh.easyindy.indy.model.IndyEventDetailed;
-import mh.easyindy.indy.model.IndySubject;
-import mh.easyindy.indy.model.IndyTeacher;
-import mh.easyindy.indy.Indy;
+import mh.indybook.indy.model.IndyEvent;
+import mh.indybook.indy.model.IndyEventDetailed;
+import mh.indybook.indy.model.IndySubject;
+import mh.indybook.indy.model.IndyTeacher;
+import mh.indybook.indy.Indy;
 import javafx.fxml.FXML;
+import mh.indybook.profile.controller.ProfileController;
+import mh.indybook.profile.model.Profile;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BookingController {
 
@@ -30,6 +41,12 @@ public class BookingController {
     @FXML
     private Tab profileTab;
     @FXML
+    private ListView<String> subjectActivityList;
+    @FXML
+    private ListView<String> prioritiesList;
+    @FXML
+    private Button openProfileBtn;
+    @FXML
     private Tab settingsTab;
     @FXML
     private Label usernameLabel;
@@ -37,10 +54,7 @@ public class BookingController {
     private Label passwordLabel;
     @FXML
     private ToggleButton showPasswordBtn;
-
-
     private Indy indy;
-
     private IndyEventDetailed selectedIndyEvent;
 
 
@@ -48,7 +62,7 @@ public class BookingController {
     @FXML
     public void initialize() {
         indy = Indy.getInstance();
-        ObservableList<IndyEvent> observableEvents = FXCollections.observableArrayList(indy.getNextEventContexts(200).stream().toList());
+        ObservableList<IndyEvent> observableEvents = FXCollections.observableArrayList(indy.getNextIndyEvents(200).stream().toList());
         eventList.setCellFactory(param -> new ListCell<IndyEvent>(){
             @Override
             public void updateItem(IndyEvent event, boolean empty) {
@@ -115,6 +129,46 @@ public class BookingController {
            }
        });
 
+       subjectActivityList.setCellFactory(param -> new ListCell<String>(){
+           @Override
+           public void updateItem(String subjectActivityString, boolean empty) {
+               super.updateItem(subjectActivityString, empty);
+               if (empty || subjectActivityString == null) {
+                   setText(null);
+               } else {
+                   setText(subjectActivityString);
+               }
+           }
+       });
+
+       prioritiesList.setCellFactory(param -> new ListCell<String>() {
+           @Override
+           public void updateItem(String priorityString, boolean empty) {
+               super.updateItem(priorityString, empty);
+               if (empty || priorityString == null) {
+                   setText(null);
+               } else {
+                   setText(priorityString);
+               }
+           }
+       });
+
+    }
+
+    @FXML
+    public void openProfile(ActionEvent event) throws FileNotFoundException {
+        FileChooser fileChooser = new FileChooser();
+        ProfileController profileController = new ProfileController();
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        Profile profile = profileController.readProfile(selectedFile);
+        subjectActivityList.setItems(FXCollections.observableArrayList(profile.getSubjectActivity().stream().toList()));
+        HashMap<Integer, String> priorities = profile.getPriorities();
+        ArrayList<String> prioritiesString = new ArrayList<>();
+        for (Map.Entry<Integer, String> entry : priorities.entrySet()) {
+            String entryString = entry.getKey() + " - " + entry.getValue();
+            prioritiesString.add(entryString);
+        }
+        prioritiesList.setItems(FXCollections.observableArrayList(prioritiesString.stream().toList()));
     }
 
     @FXML
